@@ -237,31 +237,56 @@
 									<!-- 담당 업무 -->
 									<div id="duties" class="tab-content active">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">AI 엔지니어링 프로젝트</h4>
+											<h4 class="text-primary mb-3 font-weight-bold">헥사고날 아키텍쳐 도입을 통한 대규모 서비스설계</h4>
 											<ul class="list-unstyled">
-												<li class="text-dark">• Kotlin 기반 기존 프로젝트 디벨롭(AI 엔지니어링)</li>
-												<li class="text-dark">• 헥사고날 아키텍쳐 학습 및 적용</li>
-												<li class="text-dark">• REST API 개발 및 문서화</li>
+												<li class="text-dark">• 복잡한 비즈니스 로직을 가진 대규모 서비스나 장기적인 유지보수가 필요한 프로젝트에 헥사고날 아키텍쳐가 적합하다고 판단</li>
+												<li class="text-dark">• Kotlin의 간결한 문법과 풍부한 기능으로 헥사고날 아키텍처의 각 계층을 명확하게 표현</li>
+												<li class="text-dark">• 비즈니스 로직이 외부 요소와 분리되어 단위 테스트와 유지보수 용이성 확보</li>
+												<li class="text-dark">• 데이터 클래스와 sealed 클래스로 도메인 모델과 비즈니스 로직을 명확하게 표현</li>
+											</ul>
+										</div>
+										<div class="content-item">
+											<h4 class="text-primary mb-3 font-weight-bold">로그 파이프라인 및 알림 시스템 구축</h4>
+											<ul class="list-unstyled">
+												<li class="text-dark">• 에러 수집과 사용자 활동 확인을 위한 시스템 필요성 인식</li>
+												<li class="text-dark">• Grafana 진영의 Loki와 Promtail을 활용한 파이프라인 구축</li>
+												<li class="text-dark">• 성능 비교를 위한 모니터링 도구의 중요성 인식</li>
 											</ul>
 										</div>
 									</div>
-						
+
 									<!-- 트러블 슈팅 및 성과 -->
 									<div id="troubles" class="tab-content">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">대용량 데이터 처리 성능 개선</h4>
-											<p class="mb-2 text-dark"><strong>문제상황:</strong> 기존 시스템에서 대용량 데이터 처리 시 성능 저하 발생</p>
-											<p class="mb-2 text-dark"><strong>해결방법:</strong> 배치 처리 도입 및 캐싱 전략 수립</p>
-											<p class="text-dark"><strong>결과:</strong> 처리 속도 70% 향상 및 시스템 안정성 확보</p>
+											<h4 class="text-primary mb-3 font-weight-bold">이미지 업로드 성능 최적화</h4>
+											<p class="mb-2 text-dark"><strong>문제상황:</strong> 다중 사용자 이미지 업로드시 100개 요청에서 100ms까지 지연 발생</p>
+											<p class="mb-2 text-dark"><strong>해결방법:</strong> CompletableFuture 도입으로 여러 이미지 동시 처리 구현</p>
+											<p class="text-dark"><strong>결과:</strong> 응답 시간 100ms에서 52ms로 48% 단축</p>
+										</div>
+										<div class="content-item">
+											<h4 class="text-primary mb-3 font-weight-bold">간접 참조 최적화를 통한 N+1 문제 해결</h4>
+											<p class="mb-2 text-dark"><strong>문제상황:</strong> 1,000개 데이터 조회시 40초 소요되는 성능 문제 발생</p>
+											<p class="mb-2 text-dark"><strong>해결방법:</strong> PK 추출 후 IN 쿼리와 Map 자료구조를 활용한 O(1) 시간 복잡도 구현</p>
+											<p class="text-dark"><strong>결과:</strong> 평균 응답 시간 40초에서 1.8초로 단축</p>
 										</div>
 									</div>
-						
+
 									<!-- 고민한 점 -->
 									<div id="thoughts" class="tab-content">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">아키텍처 설계에 대한 고민</h4>
-											<p class="text-dark">헥사고날 아키텍처 도입 시 도메인 간의 경계 설정과 의존성 관리에 대해 깊이 고민했습니다. 
-											특히 도메인 간의 결합도를 낮추면서도 효율적인 통신을 가능하게 하는 방법에 대해 팀과 함께 논의하며 해결책을 찾았습니다.</p>
+											<h4 class="text-primary mb-3 font-weight-bold">서비스별 최적 비동기 처리 방식 선정</h4>
+											<p class="text-dark">CompletableFuture의 쓰레드 할당 방식을 분석하고, 대량 처리시 발생할 수 있는 부하를 고려했습니다. JVM의 Context Switching 비용과 I/O 바운드 특성을 고려하여 Virtual Thread 방식 채택을 결정했습니다.</p>
+										</div>
+										<div class="content-item">
+											<h4 class="text-primary mb-3 font-weight-bold">엔티티 연관관계와 성능 최적화의 균형</h4>
+											<p class="text-dark">성능 개선 과정에서 객체 지향 설계와 성능 사이의 트레이드오프를 경험했습니다. 엔티티 설계시 지연로딩을 기본으로 하고 필요한 경우 즉시로딩을 사용하는 방식으로 두 가지 요구사항의 균형을 맞추었습니다.</p>
+										</div>
+										<div class="content-item">
+											<h4 class="text-primary mb-3 font-weight-bold">주요 성장 포인트</h4>
+											<p class="text-dark">• 비동기 처리 방식의 트레이드오프를 고려한 기술 선정 능력 향상</p>
+											<p class="text-dark">• 명확한 목적을 가진 모니터링 도구 도입의 중요성 인식</p>
+											<p class="text-dark">• 시스템 응답 시간 개선과 효율적 리소스 관리 능력 향상</p>
+											<p class="text-dark">• 객체 지향 설계와 성능 사이의 균형점 도출 역량 강화</p>
 										</div>
 									</div>
 								</div>
