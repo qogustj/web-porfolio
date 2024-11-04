@@ -213,22 +213,134 @@
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
-							<div class="text pl-3">
+							<div class="text pl-3 w-100">
 								<span class="date">2024.09.01-2024.12.31</span>
 								<h2>BackEnd Developer</h2>
 								<span class="position">주식회사 드제이 (인턴)</span>
 								<p>SI 사업부 개발팀<br /></p>
-								<b class="text-primary">기술 스택</b>
-								<p>java/Spring, Kotlin</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - Kotlin 기반 기존 프로젝트 디벨롭(AI 엔지니어링)</div>
-									<div> - 헥사고날 아키텍쳐 학습 및 적용</div>										
+								
+								<!-- 기술 스택 -->
+								<div class="mb-4">
+									<b class="text-primary">기술 스택</b>
+									<p>java/Spring, Kotlin</p>
 								</div>
-								</p>
+						
+								<!-- 탭 버튼들 -->
+								<div class="custom-tabs mb-3">
+									<button class="tab-btn active" onclick="changeTab(this, 'duties')">담당 업무</button>
+									<button class="tab-btn" onclick="changeTab(this, 'troubles')">트러블 슈팅 및 성과</button>
+									<button class="tab-btn" onclick="changeTab(this, 'thoughts')">고민한 점</button>
+								</div>
+						
+								<!-- 탭 컨텐츠 -->
+								<div class="tab-contents">
+									<!-- 담당 업무 -->
+									<div id="duties" class="tab-content active">
+										<div class="content-item">
+											<h4 class="text-primary mb-3">AI 엔지니어링 프로젝트</h4>
+											<ul class="list-unstyled">
+												<li>• Kotlin 기반 기존 프로젝트 디벨롭(AI 엔지니어링)</li>
+												<li>• 헥사고날 아키텍쳐 학습 및 적용</li>
+												<li>• REST API 개발 및 문서화</li>
+											</ul>
+										</div>
+									</div>
+						
+									<!-- 트러블 슈팅 및 성과 -->
+									<div id="troubles" class="tab-content">
+										<div class="content-item">
+											<h4 class="text-primary mb-3">대용량 데이터 처리 성능 개선</h4>
+											<p class="mb-2"><strong>문제상황:</strong> 기존 시스템에서 대용량 데이터 처리 시 성능 저하 발생</p>
+											<p class="mb-2"><strong>해결방법:</strong> 배치 처리 도입 및 캐싱 전략 수립</p>
+											<p><strong>결과:</strong> 처리 속도 70% 향상 및 시스템 안정성 확보</p>
+										</div>
+									</div>
+						
+									<!-- 고민한 점 -->
+									<div id="thoughts" class="tab-content">
+										<div class="content-item">
+											<h4 class="text-primary mb-3">아키텍처 설계에 대한 고민</h4>
+											<p>헥사고날 아키텍처 도입 시 도메인 간의 경계 설정과 의존성 관리에 대해 깊이 고민했습니다. 
+											특히 도메인 간의 결합도를 낮추면서도 효율적인 통신을 가능하게 하는 방법에 대해 팀과 함께 논의하며 해결책을 찾았습니다.</p>
+										</div>
+									</div>
+								</div>
 							</div>
-
 						</div>
+						
+						<style>
+						/* 탭 스타일 */
+						.custom-tabs {
+							display: flex;
+							gap: 10px;
+							border-bottom: 1px solid #dee2e6;
+							padding-bottom: 10px;
+						}
+						
+						.tab-btn {
+							background: none;
+							border: none;
+							padding: 8px 16px;
+							cursor: pointer;
+							border-radius: 4px;
+							color: #666;
+							transition: all 0.3s ease;
+						}
+						
+						.tab-btn.active {
+							background: #007bff;
+							color: white;
+						}
+						
+						.tab-content {
+							display: none;
+							padding: 20px 0;
+						}
+						
+						.tab-content.active {
+							display: block;
+						}
+						
+						.content-item {
+							background: #f8f9fa;
+							padding: 20px;
+							border-radius: 8px;
+							margin-bottom: 15px;
+						}
+						
+						.content-item ul li {
+							margin-bottom: 10px;
+							padding-left: 20px;
+							position: relative;
+						}
+						
+						.content-item ul li:before {
+							content: "•";
+							position: absolute;
+							left: 0;
+							color: #007bff;
+						}
+						</style>
+						
+						<script>
+						function changeTab(element, tabId) {
+							// 모든 탭 버튼에서 active 클래스 제거
+							document.querySelectorAll('.tab-btn').forEach(btn => {
+								btn.classList.remove('active');
+							});
+							
+							// 클릭된 탭 버튼에 active 클래스 추가
+							element.classList.add('active');
+							
+							// 모든 탭 컨텐츠 숨기기
+							document.querySelectorAll('.tab-content').forEach(content => {
+								content.classList.remove('active');
+							});
+							
+							// 선택된 탭 컨텐츠 보여주기
+							document.getElementById(tabId).classList.add('active');
+						}
+						</script>
 						<div class="resume-wrap d-flex ftco-animate">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
