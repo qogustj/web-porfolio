@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>백엔드 개발자 배현서</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- 기존 CSS 링크들 유지 -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 새로운 스타일 추가 -->
+    <style>
+        /* 사이드바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .sidebar-profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background: #f8f9fa;
+        }
+
+        .nav-menu a.active {
+            background: #007bff;
+            color: white;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .main-content {
+            margin-left: 300px;
+            padding: 2rem;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            color: white;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            background: rgba(31, 41, 55, 0.4);
+            color: #d1d5db;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 0.75rem;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .content-card {
+            background: rgba(31, 41, 55, 0.4);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            display: flex;
+            align-items: start;
+            color: #d1d5db;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-list li::before {
+            content: "•";
+            color: #60a5fa;
+            margin-right: 0.75rem;
+        }
+
+        /* 경험 카드 스타일 */
+        .experience-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <img src="프로필이미지주소" alt="배현서">
+            <h2>배현서</h2>
+            <p>백엔드 개발자</p>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#about-section" class="active">About</a></li>
+            <li><a href="#experience-section">Experience</a></li>
+            <li><a href="#education-section">Education</a></li>
+            <li><a href="#projects-section">Projects</a></li>
+            <li><a href="#blog-section">Blog</a></li>
+            <li><a href="#contact-section">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="main-content">
+        <!-- About 섹션 -->
+        <section id="about-section">
+            <!-- 기존 about 섹션 내용 -->
+        </section>
+
+        <!-- Experience 섹션 -->
+        <section id="experience-section">
+            <h2>Experience</h2>
+            <!-- 드제이 경험 카드 -->
+            <div class="experience-card" onclick="openModal('djcorp')">
+                <h3>BackEnd Developer</h3>
+                <p>주식회사 드제이 (인턴)</p>
+                <p class="period">2024.09.01-2024.12.31</p>
+                <p>SI 사업부 개발팀</p>
+            </div>
+
+            <!-- 하마다 경험 카드 -->
+            <div class="experience-card" onclick="openModal('hamada')">
+                <h3>BackEnd Developer</h3>
+                <p>주식회사 하마다랩스 (인턴)</p>
+                <p class="period">2024.06-2024.08.02</p>
+                <p>Windyflo use case 개발</p>
+            </div>
+        </section>
+
+        <!-- 나머지 섹션들 -->
+    </div>
+
+    <!-- 모달 -->
+    <div id="experienceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle">회사명</h2>
+                    <div id="modalSubtitle">직책 • 기간</div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+
+            <div class="tech-stack" id="modalTechStack">
+                <!-- 기술 스택 뱃지들이 여기에 동적으로 추가됨 -->
+            </div>
+
+            <div class="modal-tabs">
+                <button class="tab-button active" onclick="showTab('responsibilities')">담당 업무</button>
+                <button class="tab-button" onclick="showTab('troubleshooting')">트러블 슈팅 및 성과</button>
+                <button class="tab-button" onclick="showTab('thoughts')">느낀점</button>
+            </div>
+
+            <div id="responsibilitiesTab" class="tab-content active">
+                <!-- 담당 업무 내용 -->
+            </div>
+
+            <div id="troubleshootingTab" class="tab-content">
+                <!-- 트러블 슈팅 내용 -->
+            </div>
+
+            <div id="thoughtsTab" class="tab-content">
+                <!-- 느낀점 내용 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+
+    <!-- 새로운 스크립트 추가 -->
+    <script>
+        // 경험 데이터
+        const experienceData = {
+            djcorp: {
+                title: "BackEnd Developer",
+                company: "주식회사 드제이",
+                position: "인턴",
+                period: "2024.09.01-2024.12.31",
+                skills: ["Java", "Spring", "Kotlin", "Hexagonal Architecture", "AWS", "Docker"],
+                responsibilities: [
+                    {
+                        title: "AI 엔지니어링 프로젝트 개발",
+                        details: [
+                            "Kotlin 기반의 AI 엔지니어링 프로젝트 백엔드 개발",
+                            "헥사고날 아키텍처를 적용한 시스템 설계",
+                            "REST API 개발 및 문서화",
+                            "데이터베이스 설계 및 최적화"
+                        ]
+                    },
+                    {
+                        title: "코드 품질 개선",
+                        details: [
+                            "코드 리뷰 프로세스 확립",
+                            "단위 테스트 커버리지 향상",
+                            "성능 모니터링 시스템 구축"
+                        ]
+                    }
+                ],
+                troubleshooting: [
+                    {
+                        issue: "대용량 데이터 처리 성능 개선",
+                        problem: "기존 시스템에서 대용량 데이터 처리 시 성능 저하 발생",
+                        solution: "배치 처리 도입 및 캐싱 전략 수립",
+                        result: "처리 속도 70% 향상 및 시스템 안정성 확보"
+                    }
+                ],
+                thoughts: [
+                    {
+                        title: "기술적 성장",
+                        content: "Kotlin과 헥사고날 아키텍처를 실무에서 적용하며 새로운 기술 스택을 습득할 수 있었습니다."
+                    }
+                ]
+            },
+            // 다른 경험 데이터도 같은 형식으로 추가
+        };
+
+        function openModal(experienceId) {
+            const data = experienceData[experienceId];
+            const modal = document.getElementById('experienceModal');
+            
+            // 모달 내용 채우기
+            document.getElementById('modalTitle').textContent = data.company;
+            document.getElementById('modalSubtitle').textContent = `${data.title} • ${data.period}`;
+            
+            // 기술 스택 렌더링
+            const techStack = document.getElementById('modalTechStack');
+            techStack.innerHTML = data.skills.map(skill => 
+                `<span class="tech-badge">${skill}</span>`
+            ).join('');
+            
+            // 담당 업무 탭 내용 렌더링
+            const responsibilitiesContent = document.getElementById('responsibilitiesTab');
+            responsibilitiesContent.innerHTML = data.responsibilities.map(resp => `
+                <div class="content-card">
+                    <h4>${resp.title}</h4>
+                    <ul class="content-list">
+                        ${resp.details.map(detail => `<li>${detail}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+            
+            // 트러블 슈팅 탭 내용 렌더링
+            const troubleshootingContent = document.getElementById('troubleshootingTab');
+            troubleshootingContent.innerHTML = data.troubleshooting.map(item => `
+                <div class="content-card">
+                    <h4>${item.issue}</h4>
+                    <div class="mb-4">
+                        <h5 class="text-blue-400 mb-2">문제 상황</h5>
+                        <p>${item.problem}</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-green-400 mb-2">해결 방법</h5>
+                        <p>${item.solution}</p>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow-400 mb-2">결과</h5>
+                        <p>${item.result}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // 느낀점 탭 내용 렌더링
+            const thoughtsContent = document.getElementById('thoughtsTab');
+            thoughtsContent.innerHTML = data.thoughts.map(thought => `
+                <div class="content-card">
+                    <h4>${thought.title}</h4>
+                    <p>${thought.content}</p>
+                </div>
+            `).join('');
+            
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('experienceModal').classList.remove('show');
+        }
+
+        function showTab(tabId) {
+            // 모든 탭 컨텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 모든 탭 버튼 비활성화
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 선택된 탭 활성화
+            document.getElementById(`${tabId}Tab`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 스크롤 시 현재 섹션 하이라이트
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const scrollPosition = window.scrollY;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // 현재 섹션의 id를 가져옴
+                    const currentSection = section.getAttribute('id');
+                    
+                    // 모든 네비게이션 링크에서 active 클래스 제거
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        
+                        // 현재 섹션과 매칭되는 네비게이션 링크를 찾아 active 클래스 추가
+                        if (link.getAttribute('href') === `#${currentSection}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // 모달 외부 클릭 시 닫기
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('experienceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <!-- 기존 script 포함 -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg>
+    </div>
+
+</body>
+</html>
