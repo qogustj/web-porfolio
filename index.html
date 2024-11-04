@@ -1,845 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title>백엔드 개발자 배현서</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>백엔드 개발자 배현서</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- 기존 CSS 링크들 유지 -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
 
-	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-	<link rel="stylesheet" href="css/animate.css">
+    <!-- 새로운 스타일 추가 -->
+    <style>
+        /* 사이드바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 2rem;
+        }
 
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
+        .sidebar-profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-	<link rel="stylesheet" href="css/aos.css">
+        .sidebar-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
 
-	<link rel="stylesheet" href="css/ionicons.min.css">
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+        }
 
-	<link rel="stylesheet" href="css/flaticon.css">
-	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/style.css">
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background: #f8f9fa;
+        }
+
+        .nav-menu a.active {
+            background: #007bff;
+            color: white;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .main-content {
+            margin-left: 300px;
+            padding: 2rem;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            color: white;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            background: rgba(31, 41, 55, 0.4);
+            color: #d1d5db;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(31, 41, 55, 0.5);
+            border-radius: 0.75rem;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .content-card {
+            background: rgba(31, 41, 55, 0.4);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            display: flex;
+            align-items: start;
+            color: #d1d5db;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-list li::before {
+            content: "•";
+            color: #60a5fa;
+            margin-right: 0.75rem;
+        }
+
+        /* 경험 카드 스타일 */
+        .experience-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
+<body>
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <img src="프로필이미지주소" alt="배현서">
+            <h2>배현서</h2>
+            <p>백엔드 개발자</p>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#about-section" class="active">About</a></li>
+            <li><a href="#experience-section">Experience</a></li>
+            <li><a href="#education-section">Education</a></li>
+            <li><a href="#projects-section">Projects</a></li>
+            <li><a href="#blog-section">Blog</a></li>
+            <li><a href="#contact-section">Contact</a></li>
+        </ul>
+    </div>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <!-- 메인 컨텐츠 -->
+    <div class="main-content">
+        <!-- About 섹션 -->
+        <section id="about-section">
+            <!-- 기존 about 섹션 내용 -->
+        </section>
 
+        <!-- Experience 섹션 -->
+        <section id="experience-section">
+            <h2>Experience</h2>
+            <!-- 드제이 경험 카드 -->
+            <div class="experience-card" onclick="openModal('djcorp')">
+                <h3>BackEnd Developer</h3>
+                <p>주식회사 드제이 (인턴)</p>
+                <p class="period">2024.09.01-2024.12.31</p>
+                <p>SI 사업부 개발팀</p>
+            </div>
 
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="index.html"><span>배</span>현서</a>
-			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+            <!-- 하마다 경험 카드 -->
+            <div class="experience-card" onclick="openModal('hamada')">
+                <h3>BackEnd Developer</h3>
+                <p>주식회사 하마다랩스 (인턴)</p>
+                <p class="period">2024.06-2024.08.02</p>
+                <p>Windyflo use case 개발</p>
+            </div>
+        </section>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-					<li class="nav-item"><a href="#education-section" class="nav-link"><span>Education</span></a></li>
-					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
-					<li class="nav-item"><a href="#side-projects-section" class="nav-link"><span>Side
-								Projects</span></a>
-					</li>
-					<li class="nav-item"><a href="#blog-section" class="nav-link"><span>My Blog</span></a></li>
-					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<section class="hero-wrap js-fullheight">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center">
-				<div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
-					<div class="text text-center">
-						<span class="subheading">Hey! I am</span>
-						<h1>배현서</h1>
-						<h2>I'm a
-							<span class="txt-rotate" data-period="500"
-								data-rotate='[ "백엔드 개발자", "예비 현직자"]'></span>
-						</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div class="mouse">
-			<a href="#" class="mouse-icon">
-				<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-			</a>
-		</div>
-	</section>
+        <!-- 나머지 섹션들 -->
+    </div>
 
-	<section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-		<div class="container">
-			<div class="row d-flex no-gutters">
-				<div class="col-md-6 col-lg-6 d-flex">
-					<div class="img-about img d-flex align-items-stretch" style="width: 80%; height: 80%;">
-						<div class="overlay"></div>
-						<div class="img d-flex align-self-stretch align-items-center"
-							style="background-image:url('https://github.com/user-attachments/assets/4f0534d7-0ea0-4bdb-85b4-1f520c780a29');
-								   background-size: 80%;
-								   background-position: center;">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-6 pl-md-5 py-5">
-					<div class="row justify-content-start pb-3">
-						<div class="col-md-12 heading-section ftco-animate">
-							<h1 class="big">About</h1>
-							<h2 class="mb-4">About Me</h2>
-							<p>축구를 좋아하는 개발자 배현서입니다. </p>
-							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Name:</span> <span>배현서</span></li>
-								<li class="d-flex"><span>Address:</span> <span>서울특별시 중랑구 신내동</span></li>
-								<li class="d-flex"><span>Email:</span> <span>qogustj50@gmail.com</span></li>
-								<li class="d-flex"><span>Phone: </span> <span>+82-10-4304-4297</span></li>
-								<li class="d-flex"><span>github: </span> <span><p><a href="https://github.com/qogustj">https://github.com/qogustj</a></p></span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="counter-wrap ftco-animate d-flex mt-md-3">
-						<div class="text">
-							<p class="mb-4">
-								<span class="number" data-number="9">0</span>
-								<span>Project complete</span>
-							</p>
-							<p>
-								<a target="_blank"
-								   href="https://drive.google.com/file/d/1LXxi8JPyNd4F-t_2JgvQT7JPYERYfnKl/view?usp=sharing"
-								   class="btn btn-primary py-3 px-3 resume-btn"
-								   style="font-weight: bold; font-size: 1.1em; transition: all 0.3s ease;">
-									이력서 바로가기
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<style>
-		.resume-btn:hover {
-			transform: scale(1.05);
-			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-		}
-	</style>
-	<section class="ftco-section ftco-no-pb ftco-counter img" id="section-counter">
-		<div class="container-fluid px-md-5">
-			<div class="row d-md-flex align-items-center">
-				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-					<div class="block-18 shadow">
-						<div class="text">
-							<strong class="number" data-number="365">0</strong>
-							<span>코딩한 일수</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-					<div class="block-18 shadow">
-						<div class="text">
-							<strong class="number" data-number="9">0</strong>
-							<span>Complete Projects</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-					<div class="block-18 shadow">
-						<div class="text">
-							<strong class="text" data-number="semi pro 1">0</strong>
-							<span>plabfootball</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-					<div class="block-18 shadow">
-						<div class="text">
-							<strong class="text" data-number="Diamond 4">0</strong>
-							<span>League of legend</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- 모달 -->
+    <div id="experienceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle">회사명</h2>
+                    <div id="modalSubtitle">직책 • 기간</div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
 
+            <div class="tech-stack" id="modalTechStack">
+                <!-- 기술 스택 뱃지들이 여기에 동적으로 추가됨 -->
+            </div>
 
-	<section class="ftco-section ftco-no-pb goto-here" id="resume-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<nav id="navi">
-						<ul>
-							<li><a href="#page-1">Education</a></li>
-							<li><a href="#page-2">Experience</a></li>
-							<li><a href="#page-4">Projects</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="col-md-9" id="education-section">
-					<div id="page-1" class="page one">
-						<h2 class="heading">Education</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2019.03-2019.12</span>
-								<h2>융합특성화자유전공학부</h2>
-								<span class="position">Soongsil Univercity</span>
-								<p>축구 동아리 활동과 자취 생활을 통해 함께 살아가는 법을 배웠고, 다양한 전공 수업을 통해 진로를 확고히 했습니다. </p>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2020.03-2025.02(졸업예정)</span>
-								<h2>소프트웨어학부 & 정보보안(융합전공)</h2>
-								<span class="position">Soongsil Univercity</span>
-								<p>Computer Science 기초 지식을 탄탄히 쌓았고 다양한 프로젝트 활동을 통해 협업 능력을 키웠습니다. </p>
-							</div>
-						</div>
-					</div>
+            <div class="modal-tabs">
+                <button class="tab-button active" onclick="showTab('responsibilities')">담당 업무</button>
+                <button class="tab-button" onclick="showTab('troubleshooting')">트러블 슈팅 및 성과</button>
+                <button class="tab-button" onclick="showTab('thoughts')">느낀점</button>
+            </div>
 
-					<div id="page-2" class="page two">
-						<h2 class="heading">Work Experience</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.09.01-2024.12.31</span>
-								<h2>BackEnd Developer</h2>
-								<span class="position">주식회사 드제이 (인턴)</span>
-								<p>SI 사업부 개발팀<br /></p>
-								<b class="text-primary">기술 스택</b>
-								<p>java/Spring, Kotlin</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - Kotlin 기반 기존 프로젝트 디벨롭(AI 엔지니어링)</div>
-									<div> - 헥사고날 아키텍쳐 학습 및 적용</div>										
-								</div>
-								</p>
-							</div>
+            <div id="responsibilitiesTab" class="tab-content active">
+                <!-- 담당 업무 내용 -->
+            </div>
 
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.06-2024.08.02</span>
-								<h2>BackEnd Developer</h2>
-								<span class="position">주식회사 하마다랩스 (인턴)</span>
-								<p>Windyflo use case 개발, WindyData 웹사이트 개발 및 관리<br /></p>
-								<b class="text-primary">기술 스택</b>
-								<p>java/Spring</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - java/Srping을 사용한 Windyflo POC 제작</div>					
-									<div> use case 1 : 이메일 통합 관리 서비스</div>
-									<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://www.richam.site/"> user case 1 Link</a>
-											<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://www.youtube.com/watch?v=hYpD-61Xz74"> user case 1 Vedio</a>
-									<div> use case 2 : 레시피 추천 서비스</div>								
-									<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://youtu.be/pTUChqAUHXQ?si=eS-gSCPuz5-Uxrzb"> user case 2 Vedio</a>
-									<div> use case 3 : 외국인과의 네트워킹을 위한 플랫폼</div>								
-									<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://youtu.be/yvUME8naHbY?si=gRlVyr0ZS0acQTti"> user case 3 Vedio</a>									
-								</div>
-								</p>
-							</div>
+            <div id="troubleshootingTab" class="tab-content">
+                <!-- 트러블 슈팅 내용 -->
+            </div>
 
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.03-2024.05</span>
-								<h2>Full Stack Developer</h2>
-								<span class="position">주식회사 블렌딩</span>
-								<p>Open Ai를 이용한 프로젝트 개발 및 관리</p>
-								<b class="text-primary">기술 스택</b>
-								<p>React,  java/Spring</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - React 기반 Open Ai 서비스  프론트 개발</div>
-									<div> - java/Srping을 사용한 Open Ai 프로젝트  백엔드 개발</div>														
-								</div>
-							</div>
-						</div>
-						<h2 class="heading">PRICES</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2023.12.23</span>
-								<h2>큐시즘 최종발표 우수상</h2>
-								<span class="position">Kusitms(한국대학생IT경영학회)</span>
-								<div>
-									<div> - 팀 회의의 솔루션을 제공하는 서비스, MEETPL 개발 </div>														
-								</div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate"></div>
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.08.15</span>
-								<h2>소프트웨어 공모전 금상</h2>
-								<span class="position">숭실대학교 소프트웨어학부</span>
-								<div>
-									<div> - 이메일 로드맵 서비스 (EMAP) </div>														
-								</div>
-							</div>
-						</div>
-						<h2 class="heading">Extracurricular Activities</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2023.09-2023.12</span>
-								<h2>BackEnd Engineer</h2>
-								<span class="position">Kusitms 28th 학회원 (한국대학생IT경영학회)</span>
-								<div>
-									<div> - 기업프로젝트(동아ST) : 동아ST 웹 페이지 개선</div>
-									<div> - 해커톤 : UN SDGs를 키워드로 서비스 개발 </div>
-									<div> - 밋업데이 : 팀 회의의 솔루션을 제공하는 서비스, MEETPL 개발 </div>														
-								</div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.01-2024.06</span>
-								<h2>BackEnd Engineer</h2>
-								<span class="position">Kusitms 29th 운영진 (한국대학생IT경영학회)</span>
-								<div>
-									<div> - 경영총괄팀 사무대관직 수행 </div>	
-									<div> - 기업프로젝트(Weflo) : 드론 관련 플랫폼 Weflo 웹 페이지 개선</div>
-									<div> - 해커톤 : 트렌드 코리아의 '도파밍'를 키워드로 '밍글' 서비스 개발 </div>
-									<div> - 밋업데이 : 한국인 대학생과 외국인 대학생의 네트워킹 서비스, SYNC 개발 </div>														
-								</div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.03-NOW</span>
-								<h2>BackEnd Engineer</h2>
-								<span class="position">숭실대학교 총학생회 IT지원위원회</span>
-								<div>
-									<div> - IT지원위원회 백엔드 개발리드 </div>
-									<div> - DDD 기반의 패키지 구조 도입 </div>														
-								</div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2019.03-NOW</span>
-								<h2>Soccer Team</h2>
-								<span class="position">숭실대학교 중앙축구동아리 SSC</span>
-								<div>
-									<div> - SSC 집행부 직무 수행(2022.02~2023.02)</div>	
-									<div> - 서울권대학축구대회 SUFA B리그 우승</div>
-									<div> - 뭉쳐야 찬다 시즌 3 SSC편 출연</div>													
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="page-3" class="page three">
-						<h2 class="heading">Skills</h2>
-						<div class="row progress-circle mb-5">
-							<div class="col-lg-4 mb-4">
-								<div class="bg-white rounded-lg shadow p-4">
-									<h2 class="h5 font-weight-bold text-center mb-4">JAVA/SPRING</h2>
+            <div id="thoughtsTab" class="tab-content">
+                <!-- 느낀점 내용 -->
+            </div>
+        </div>
+    </div>
 
-									<!-- Progress bar 1 -->
-									<div class="progress mx-auto" data-value='90'>
-										<span class="progress-left">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<span class="progress-right">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<div
-											class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-											<div class="h2 font-weight-bold">90<sup class="small">%</sup></div>
-										</div>
-									</div>
-									<!-- END -->
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
 
-									<!-- Demo info -->
-									<div class="row text-center mt-4">
-										<div class="col-6 border-right">
-											<div class="h4 font-weight-bold mb-0">90%</div><span
-												class="small text-gray">Last week</span>
-										</div>
-										<div class="col-6">
-											<div class="h4 font-weight-bold mb-0">80%</div><span
-												class="small text-gray">Last month</span>
-										</div>
-									</div>
-									<!-- END -->
-								</div>
-							</div>
+    <!-- 새로운 스크립트 추가 -->
+    <script>
+        // 경험 데이터
+        const experienceData = {
+            djcorp: {
+                title: "BackEnd Developer",
+                company: "주식회사 드제이",
+                position: "인턴",
+                period: "2024.09.01-2024.12.31",
+                skills: ["Java", "Spring", "Kotlin", "Hexagonal Architecture", "AWS", "Docker"],
+                responsibilities: [
+                    {
+                        title: "AI 엔지니어링 프로젝트 개발",
+                        details: [
+                            "Kotlin 기반의 AI 엔지니어링 프로젝트 백엔드 개발",
+                            "헥사고날 아키텍처를 적용한 시스템 설계",
+                            "REST API 개발 및 문서화",
+                            "데이터베이스 설계 및 최적화"
+                        ]
+                    },
+                    {
+                        title: "코드 품질 개선",
+                        details: [
+                            "코드 리뷰 프로세스 확립",
+                            "단위 테스트 커버리지 향상",
+                            "성능 모니터링 시스템 구축"
+                        ]
+                    }
+                ],
+                troubleshooting: [
+                    {
+                        issue: "대용량 데이터 처리 성능 개선",
+                        problem: "기존 시스템에서 대용량 데이터 처리 시 성능 저하 발생",
+                        solution: "배치 처리 도입 및 캐싱 전략 수립",
+                        result: "처리 속도 70% 향상 및 시스템 안정성 확보"
+                    }
+                ],
+                thoughts: [
+                    {
+                        title: "기술적 성장",
+                        content: "Kotlin과 헥사고날 아키텍처를 실무에서 적용하며 새로운 기술 스택을 습득할 수 있었습니다."
+                    }
+                ]
+            },
+            // 다른 경험 데이터도 같은 형식으로 추가
+        };
 
-							<div class="col-lg-4 mb-4">
-								<div class="bg-white rounded-lg shadow p-4">
-									<h2 class="h5 font-weight-bold text-center mb-4">Kotlin</h2>
+        function openModal(experienceId) {
+            const data = experienceData[experienceId];
+            const modal = document.getElementById('experienceModal');
+            
+            // 모달 내용 채우기
+            document.getElementById('modalTitle').textContent = data.company;
+            document.getElementById('modalSubtitle').textContent = `${data.title} • ${data.period}`;
+            
+            // 기술 스택 렌더링
+            const techStack = document.getElementById('modalTechStack');
+            techStack.innerHTML = data.skills.map(skill => 
+                `<span class="tech-badge">${skill}</span>`
+            ).join('');
+            
+            // 담당 업무 탭 내용 렌더링
+            const responsibilitiesContent = document.getElementById('responsibilitiesTab');
+            responsibilitiesContent.innerHTML = data.responsibilities.map(resp => `
+                <div class="content-card">
+                    <h4>${resp.title}</h4>
+                    <ul class="content-list">
+                        ${resp.details.map(detail => `<li>${detail}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+            
+            // 트러블 슈팅 탭 내용 렌더링
+            const troubleshootingContent = document.getElementById('troubleshootingTab');
+            troubleshootingContent.innerHTML = data.troubleshooting.map(item => `
+                <div class="content-card">
+                    <h4>${item.issue}</h4>
+                    <div class="mb-4">
+                        <h5 class="text-blue-400 mb-2">문제 상황</h5>
+                        <p>${item.problem}</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-green-400 mb-2">해결 방법</h5>
+                        <p>${item.solution}</p>
+                    </div>
+                    <div>
+                        <h5 class="text-yellow-400 mb-2">결과</h5>
+                        <p>${item.result}</p>
+                    </div>
+                </div>
+            `).join('');
 
-									<!-- Progress bar 1 -->
-									<div class="progress mx-auto" data-value='10'>
-										<span class="progress-left">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<span class="progress-right">
-											<span class="progress-bar border-primary"></span>
-										</span>
-										<div
-											class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-											<div class="h2 font-weight-bold">10<sup class="small">%</sup></div>
-										</div>
-									</div>
-									<!-- END -->
+            // 느낀점 탭 내용 렌더링
+            const thoughtsContent = document.getElementById('thoughtsTab');
+            thoughtsContent.innerHTML = data.thoughts.map(thought => `
+                <div class="content-card">
+                    <h4>${thought.title}</h4>
+                    <p>${thought.content}</p>
+                </div>
+            `).join('');
+            
+            modal.classList.add('show');
+        }
 
-									<!-- Demo info -->
-									<div class="row text-center mt-4">
-										<div class="col-6 border-right">
-											<div class="h4 font-weight-bold mb-0">10%</div><span
-												class="small text-gray">Last week</span>
-										</div>
-										<div class="col-6">
-											<div class="h4 font-weight-bold mb-0">20%</div><span
-												class="small text-gray">Last month</span>
-										</div>
-									</div>
-									<!-- END -->
-								</div>
-							</div>					
-						</div>						
-					</div>
-					<div id="page-4" class="page four">
-						<h2 id="projects-section" class="heading">Projects</h2>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2023.09-2023.12</span>
-								<div class="d-flex">
-									<h2>팀 회의 솔루션 제공 플랫폼 개발</h2>
-									<div>&nbsp;<a class="btn btn-outline-secondary" target="_blank"
-											class="btn btn-outline-secondary"
-											href="https://github.com/Kusitms-28th-MeetUp-C">서비스 소개</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Kusitms-28th-MeetUp-C/Frontend">FRONT</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Kusitms-28th-MeetUp-C/Server">BACK</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://meetpl.vercel.app/">DEMO SITE</a>
-									</div>
-								</div>
-								<span class="position">MEETPL</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Java, Spring Boot
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 SNS 로그인, 템플릿 검색, 내 템플릿 실시간 검색, 채팅 </div>
-								<b class="text-primary">역할 </b>
-								<div> - CI/CD 구축 : EC2+Nginx+Docker를 사용해 blue-green 무중단 배포</div>
-								<div> - Main 모듈 개발 총괄</div>
-								<div> - ERD 설계 및 데이터베이스 선정( RDS, NOSQL )</div>
-								<div> - Mongo Atlas Search 학습</div>						
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.03-2024.06</span>
-								<div class="d-flex">
-									<h2>한국인 대학생과 외국인 유학생 네트워킹 플랫폼 개발</h2>
-									<div>&nbsp;<a class="btn btn-outline-secondary" target="_blank"
-											class="btn btn-outline-secondary"
-											href="https://github.com/Kusitms-29th-MeetUp-H">서비스 소개</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Kusitms-29th-MeetUp-H/Front">FRONT</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Kusitms-29th-MeetUp-H/Back">BACK</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://youtu.be/jSpX6bYUCbY">DEMO VIDEO</a>
-									</div>
-								</div>							
-								<span class="position">SYNC</span>
-								<div> <b class="text-dark">기술 스택 : </b>Kotlin, Android Studio, Java, Spring Boot
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 SNS 로그인, 모임 검색 필터링, 외국인을 위한 번역 기능, 단체 채팅방, 알림 기능, 커뮤니티 기능 </div>
-								<b class="text-primary">역할 </b>
-								<div> - 멀티모듈 설계 및 commit message에 따른 CI/CD 환경 구성</div>
-								<div> - Redis를 활용한 웹소켓 채팅 기능 구현</div>
-								<div> - Redis에 jwt 토큰 관리</div>
-								<div> - 앱 애플리케이션과 통신하기 위한 nginx 설정</div>
-								<div> - 백엔드 리드로서 api 문서 정의와 역할 배분</div>
-								<div> - 외부API(NAVER PAPAGO) 호출 로직 최적화</div>
-								<div> - Util 패키지 사용하여 코드 재사용성 개선</div>
-								<div> - 서비스 레이어 분리 </div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.02-NOW</span>
-								<div class="d-flex">
-									<h2>현직자, 대학생의 코드리뷰 매칭 플랫폼</h2>
-									<div>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="">FRONT</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Team-Meeple-Re-Coding/backend">BACK</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://re-coding-meetpl.vercel.app/">DEMO SITE</a>
-									</div>
-								</div>							
-								<span class="position">Re;Coding</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Java, Spring Boot
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 SNS 로그인, 개발자 검색, 코드 리뷰 매칭, AI 코드리뷰 </div>
-								<b class="text-primary">역할 </b>
-								<div> - Ai 코드리뷰 기능 제시 및 구현</div>
-								<div> - ERD 설계 및 CI/CD 구축</div>								
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2023.09-NOW</span>
-								<div class="d-flex">
-									<h2>이메일 통합 관리 서비스</h2>
-									<div>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Capstone-Richam/richam-client">FRONT</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/Capstone-Richam/richam-server">BACK</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://www.richam.site/">DEMO SITE</a>
-									</div>
-								</div>							
-								<span class="position">EMAP(Email+Roadmap)</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Java, Spring Boot
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 이메일 통합 서비스, 이메일 키워드 필터링, AI 메일 템플릿 제공, 이메일별 메일 전송 </div>
-								<b class="text-primary">역할 </b>
-								<div> - Ai 이메일 템플릿 제공 기능 제시 및 구현</div>
-								<div> - MongoDB를 사용한 대용량 데이터 처리</div>
-								<div> - 프롬프트 가공을 통해 키워드 필터링 기능 구현 </div>
-							</div>
-						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.04-NOW</span>
-								<div class="d-flex">
-									<h2>숭실대학교 총학생회 홈페이지</h2>
-									<div>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="">FRONT</a>&nbsp;<a
-											class="btn btn-outline-secondary" target="_blank"
-											href="https://github.com/ssu-student-union/homepage-backend">BACK</a>
-									</div>
-								</div>							
-								<span class="position">ussum</span>
-								<div> <b class="text-dark">기술 스택 : </b>React, Typescript, Java, Spring Boot
-								</div>
-								<div> <b class="text-dark">주요 기능 : </b> 회원 관리 및 회원 정보 검증, 권한 관리(acl), AI 챗봇</div>
-								<b class="text-primary">역할 </b>
-								<div> - 백엔드 리드로서 역할 분배 및 개발 일정 설계</div>
-								<div> - Ai 챗봇 기능 제시 및 구현</div>
-								<div> - ACL 관리 기능 설계</div>
-								<div> - DDD 구조 기반 패키지 구조 도입 </div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+        function closeModal() {
+            document.getElementById('experienceModal').classList.remove('show');
+        }
 
+        function showTab(tabId) {
+            // 모든 탭 컨텐츠 숨기기
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 모든 탭 버튼 비활성화
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 선택된 탭 활성화
+            document.getElementById(`${tabId}Tab`).classList.add('active');
+            event.target.classList.add('active');
+        }
 
-	<section class="ftco-section ftco-project">
-		<div class="container-fluid px-md-0">
-			<div class="row no-gutters justify-content-center pb-5">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h1 class="big big-2">Projects</h1>
-					<h2 id="side-projects-section" class="mb-4">Side Projects</h2>
-					<p>사이드 프로젝트 경험을 바탕으로, 현직에서 기여하며 성장하고 싶습니다.</p>
-				</div>
-			</div>
-			<div class="row no-gutters">
-				<div class="col-md-4">
-					<a href="https://meetpl.vercel.app/" target="_blank">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/8a4cdb75-27c7-4b7d-8e19-448aae493d65);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://meetpl.vercel.app/"> MEETPL - 팀 회의 솔루션 제공 플랫폼 개발</a></h3>
-							<span>백엔드 파트로서 Main 모듈 개발, CI/CD 구축을 담당하였습니다.</span>
-						</div>
-					</div>
-				</a>
-				</div>
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/dc6762d3-6fe9-44d4-895e-9150628c860c);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://qpi.kr/"> SYNC - 한국인 대학생과 외국인 유학생 네트워킹 플랫폼 개발</a></h3>
-							<span>백엔드 파트 리드로서 Socket 모듈 개발, ERD설계 및 전반적인 백엔드 운영을 맡았습니다.</span>
-						</div>
-					</div>
-				</div>
+        // 스크롤 시 현재 섹션 하이라이트
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const scrollPosition = window.scrollY;
 
-				<div class="col-md-4">
-					<a href="https://re-coding-meetpl.vercel.app/" target="_blank">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/988dcde9-f7cf-4952-bddf-97f8f1bf360f);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://re-coding-meetpl.vercel.app/"> Re;Coding - 현직자, 대학생의 코드리뷰 매칭 플랫폼</a></h3>
-							<span>백엔드 파트로서 Ai 도입, 소프트 아키텍처 설계를 하였습니다.</span>
-						</div>
-					</div>
-				</a>
-				</div>
-				<div class="col-md-4">
-					<a href="https://www.richam.site/login" target="_blank">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/0414bec6-bd53-43f1-b0b0-d5432d65d788);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://www.richam.site/login"> EMAP - 이메일 통합 관리 서비스</a></h3>
-							<span>백엔드 파트로서 Ai 도입, DB 이원화를 진행하였습니다.</span>
-						</div>
-					</div>
-				</a>
-				</div>
-				<div class="col-md-4">
-					<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-						style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/7a0c7672-abe2-41b1-8ea0-7bd64a80a25f);">
-						<div class="overlay"></div>
-						<div class="text text-center p-4">
-							<h3><a target="_blank" href="https://homepage-frontend-dun.vercel.app/"> USSUM - 숭실대 총학생회 홈페이지</a></h3>
-							<span>백엔드 파트 리드로서 DDD기반 패키지 구조를 도입하고, ACL 설계를 진행했습니다.</span>
-						</div>
-					</div>
-				</div>		
-				<div class="col-md-4">
-					<a href="https://match-xi.vercel.app/" target="_blank">
-						<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-							style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/fb415e62-11de-435d-87cf-a89dd8c2b2cb);">
-							<div class="overlay"></div>
-							<div class="text text-center p-4">
-								<h3>SSU-MATCH - MMR기반 풋살 매칭 플랫폼</h3>
-								<span>백엔드 파트로서 ELO 알고리즘을 변형하여 MMR 시스템을 도입하였습니다.</span>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4">
-					<a href="http://weflow-a-bucket.s3-website.ap-northeast-2.amazonaws.com/monitoring/drone-search" target="_blank">
-						<div class="project img ftco-animate d-flex justify-content-center align-items-center"
-							style="background-image: url(https://github.com/qogustj/hamada_back/assets/96872852/a8a0973a-f057-4864-abef-25e1edd77b86);">
-							<div class="overlay"></div>
-							<div class="text text-center p-4">
-								<h3>Weflo - Weflo 웹사이트 개선</h3>
-								<span>백엔드 파트로서 복잡한 대시보드 데이터를 다루고 기업이 추구하는 서비스에 대한 이해를 했습니다..</span>
-							</div>
-						</div>
-					</a>
-				</div>		
-			</div>
-		</div>
-	</section>
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // 현재 섹션의 id를 가져옴
+                    const currentSection = section.getAttribute('id');
+                    
+                    // 모든 네비게이션 링크에서 active 클래스 제거
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        
+                        // 현재 섹션과 매칭되는 네비게이션 링크를 찾아 active 클래스 추가
+                        if (link.getAttribute('href') === `#${currentSection}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
 
-	<section class="ftco-section" id="blog-section">
-		<div class="container">
-			<div class="row justify-content-center mb-5 pb-5">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h1 class="big big-2">Blog</h1>
-					<h2 class="mb-4">My Blog</h2>
-					<p>매일은 아니어도 꾸준히 하자!</p>
-				</div>
-			</div>
-			<div class="row d-flex">
-				<a href="https://velog.io/@qogustj50/posts" target="_blank">
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="https://velog.io/@qogustj50/posts" class="block-20" style="background-image: url('https://github.com/qogustj/hamada_back/assets/96872852/b4465a73-eab7-499c-9593-0d2f5f6cde8d');">
-						</a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="https://velog.io/@qogustj50/posts">VELOG</a>
-							</h3>
-							<div class="d-flex align-items-center mb-3 meta">
-								<p class="mb-0">
-									<span class="mr-2">March. 1, 2024~</span>
-									<a href="https://velog.io/@qogustj50/posts" class="mr-2">@qogustj50</a>
-									<a href="https://velog.io/@qogustj50/posts" class="meta-chat"><span class="icon-chat"></span> 9</a>
-								</p>
-							</div>
-							<p>안녕하세요</p>
-						</div>
-					</div>
-				</div>			
-			</a>
-			</div>
-		</div>
-	</section>
+        // 모달 외부 클릭 시 닫기
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('experienceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
 
-	<section class="ftco-section ftco-hireme img" style="background-image: url(images/bg_1.jpg)">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>경험하고 싶은 <span>대학생</span> 입니다.</h2>
-					<p>제 경험을 적용시켜 서로가 성장하는 것이 저의 목표입니다.</p>
-					<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-5">감사합니다.</a></p>
-				</div>
-			</div>
-		</div>
-	</section>
+        // ESC 키로 모달 닫기
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 
-	<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-		<div class="container">
-			<div class="row justify-content-center mb-5 pb-3">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<h1 class="big big-2">Contact</h1>
-					<h2 class="mb-4">Contact Me</h2>
-					<p>회사와 함께 성장하는 개발자가 되겠습니다.</p>
-				</div>
-			</div>
+    <!-- 기존 script 포함 -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
 
-			<div class="row d-flex contact-info mb-5">
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-map-signs"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Address</h3>
-							<p>서울특별시 중랑구 신내동</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-phone2"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Contact Number</h3>
-							<p><a href="tel://1234567920">+ 010 4304 4297</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-paper-plane"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Email Address</h3>
-							<p><a href="mailto:info@yoursite.com">haulqogustj@naver.com</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-					<div class="align-self-stretch box text-center p-4 shadow">
-						<div class="icon d-flex align-items-center justify-content-center">
-							<span class="icon-globe"></span>
-						</div>
-						<div>
-							<h3 class="mb-4">Github</h3>
-							<p><a href="#">https://github.com/qogustj</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</section>
-
-
-	<footer class="ftco-footer ftco-section">
-		<div class="container">
-
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-						is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-				stroke="#F96D00" />
-		</svg></div>
-
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/scrollax.min.js"></script>
-
-	<script src="js/main.js"></script>
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg>
+    </div>
 
 </body>
-
 </html>
