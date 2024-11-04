@@ -377,6 +377,25 @@
 							font-weight: 600;
 						}
 						</style>
+						<script>
+							function changeTab(selectedBtn, contentId) {
+								// 모든 탭 버튼의 active 클래스 제거
+								document.querySelectorAll('.tab-btn').forEach(btn => {
+									btn.classList.remove('active');
+								});
+								
+								// 선택된 버튼에 active 클래스 추가
+								selectedBtn.classList.add('active');
+								
+								// 모든 탭 컨텐츠 숨기기
+								document.querySelectorAll('.tab-content').forEach(content => {
+									content.classList.remove('active');
+								});
+								
+								// 선택된 컨텐츠만 보이기
+								document.getElementById(contentId).classList.add('active');
+							}
+							</script>
 						<div class="resume-wrap d-flex ftco-animate">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
