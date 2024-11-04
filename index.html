@@ -175,7 +175,7 @@
 					<nav id="navi">
 						<ul>
 							<li><a href="#page-1">Education</a></li>
-							<li><a href="#page-2">Experience</a></li>
+							<li><a href="#page-2">주요 활동</a></li>
 							<li><a href="#page-4">Projects</a></li>
 						</ul>
 					</nav>
@@ -208,15 +208,15 @@
 					</div>
 
 					<div id="page-2" class="page two">
-						<h2 class="heading">Work Experience</h2>
+						<h2 class="heading">주요 활동</h2>
 						<div class="resume-wrap d-flex ftco-animate">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
 							<div class="text pl-3 w-100">
 								<span class="date font-weight-bold text-dark">2024.09.01-2024.12.31</span>
-								<h2 class="font-weight-bold">BackEnd Developer</h2>
-								<span class="position text-dark">주식회사 드제이 (인턴)</span>
+								<h2 class="font-weight-bold">학점 연계 인턴십</h2>
+								<span class="position text-dark">주식회사 드제이</span>
 								<p class="text-dark font-weight-medium">SI 사업부 개발팀<br /></p>
 								
 								<!-- 기술 스택 -->
@@ -237,20 +237,20 @@
 									<!-- 담당 업무 -->
 									<div id="duties" class="tab-content active">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">헥사고날 아키텍쳐 도입을 통한 대규모 서비스설계</h4>
+											<h4 class="text-primary mb-3 font-weight-bold">헥사고날 아키텍처를 활용한 대규모 알림 서비스 설계</h4>
 											<ul class="list-unstyled">
-												<li class="text-dark">• 복잡한 비즈니스 로직을 가진 대규모 서비스나 장기적인 유지보수가 필요한 프로젝트에 헥사고날 아키텍쳐가 적합하다고 판단</li>
-												<li class="text-dark">• Kotlin의 간결한 문법과 풍부한 기능으로 헥사고날 아키텍처의 각 계층을 명확하게 표현</li>
-												<li class="text-dark">• 비즈니스 로직이 외부 요소와 분리되어 단위 테스트와 유지보수 용이성 확보</li>
-												<li class="text-dark">• 데이터 클래스와 sealed 클래스로 도메인 모델과 비즈니스 로직을 명확하게 표현</li>
+												<li class="text-dark">푸시, 이메일, SMS 등 다양한 알림 채널과의 연동이 필요한 시스템 특성상, 외부 시스템과의 결합도를 낮출 수 있는 헥사고날 아키텍처 채택</li>
+												<li class="text-dark">Kotlin의 데이터 클래스로 알림 템플릿과 메시지를 불변객체로 관리하고, sealed 클래스를 활용해 알림 상태와 타입을 타입 안전하게 처리</li>
+												<li class="text-dark">Port와 Adapter 패턴으로 FCM, KAKAO 등 외부 알림 서비스들의 교체와 추가가 용이한 구조 구현</li>
+												<li class="text-dark">각 알림 채널별 독립적인 테스트와 배포가 가능하도록 설계하여, 서비스 안정성과 유지보수성 향상</li>
 											</ul>
 										</div>
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">로그 파이프라인 및 알림 시스템 구축</h4>
+											<h4 class="text-primary mb-3 font-weight-bold">사용자 행동 기반 의사결정을 위한 로그 파이프라인 구축</h4>
 											<ul class="list-unstyled">
-												<li class="text-dark">• 에러 수집과 사용자 활동 확인을 위한 시스템 필요성 인식</li>
-												<li class="text-dark">• Grafana 진영의 Loki와 Promtail을 활용한 파이프라인 구축</li>
-												<li class="text-dark">• 성능 비교를 위한 모니터링 도구의 중요성 인식</li>
+												<li class="text-dark">기술 도입 시 정량적인 의사결정의 필요성을 인식하고, 데이터 기반 의사결정 체계 구축</li>
+												<li class="text-dark">Grafana Loki와 Promtail을 활용해 사용자 행동 패턴과 오류 발생 상황을 실시간으로 수집하는 파이프라인 구현</li>
+												<li class="text-dark">예시: Virtual Thread vs CompletableFuture 도입 검토 시, 처리량과 리소스 사용률 데이터를 통한 객관적 의사결정 진행</li>
 											</ul>
 										</div>
 									</div>
@@ -430,24 +430,7 @@
 							</div>
 
 						</div>
-						<div class="resume-wrap d-flex ftco-animate">
-							<div class="icon d-flex align-items-center justify-content-center">
-								<span class="flaticon-ideas"></span>
-							</div>
-							<div class="text pl-3">
-								<span class="date">2024.03-2024.05</span>
-								<h2>Full Stack Developer</h2>
-								<span class="position">주식회사 블렌딩</span>
-								<p>Open Ai를 이용한 프로젝트 개발 및 관리</p>
-								<b class="text-primary">기술 스택</b>
-								<p>React,  java/Spring</p>
-								<b class="text-primary">주요 업무 </b>
-								<div>
-									<div> - React 기반 Open Ai 서비스  프론트 개발</div>
-									<div> - java/Srping을 사용한 Open Ai 프로젝트  백엔드 개발</div>														
-								</div>
-							</div>
-						</div>
+					
 						<h2 class="heading">PRICES</h2>
 						<div class="resume-wrap d-flex ftco-animate">
 							<div class="icon d-flex align-items-center justify-content-center">
