@@ -108,6 +108,7 @@
 			}
 			</script>
 
+<head>
 	<title>백엔드 개발자 배현서</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -400,21 +401,21 @@
 								</div>
 							</div>
 						</div>
-						<!-- 드제이 인턴십 -->
+						<!-- 하마다랩스 -->
 						<div class="resume-wrap d-flex ftco-animate">
 							<div class="icon d-flex align-items-center justify-content-center">
 								<span class="flaticon-ideas"></span>
 							</div>
 							<div class="text pl-3 w-100 experience-section">
-								<span class="date font-weight-bold text-dark">2024.09.01-2024.12.31</span>
-								<h2 class="font-weight-bold">학점 연계 인턴십</h2>
-								<span class="position text-dark">주식회사 드제이</span>
-								<p class="text-dark font-weight-medium">SI 사업부 개발팀<br /></p>
+								<span class="date font-weight-bold text-dark">2024.06-2024.08.02</span>
+								<h2 class="font-weight-bold">동작 스타트업 학점 연계 인턴십</h2>
+								<span class="position text-dark">하마다랩스</span>
+								<p class="text-dark font-weight-medium">개발팀<br /></p>
 								
 								<!-- 기술 스택 -->
 								<div class="mb-4">
 									<b class="text-primary h5">기술 스택</b>
-									<p class="text-dark font-weight-medium">java/Spring, Kotlin</p>
+									<p class="text-dark font-weight-medium">java/Spring, Mysql, FlowWise</p>
 								</div>
 						
 								<!-- 탭 버튼들 -->
@@ -429,12 +430,23 @@
 									<!-- 담당 업무 -->
 									<div id="duties-dj" class="tab-content active">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">헥사고날 아키텍처를 활용한 대규모 알림 서비스 설계</h4>
+											<h4 class="text-primary mb-3 font-weight-bold">AI 파이프라인 솔루션을 활용한 Windyflo POC 제작</h4>
 											<ul class="list-unstyled">
-												<li class="text-dark">푸시, 이메일, SMS 등 다양한 알림 채널과의 연동이 필요한 시스템 특성상, 외부 시스템과의 결합도를 낮출 수 있는 헥사고날 아키텍처 채택</li>
-												<li class="text-dark">Kotlin의 데이터 클래스로 알림 템플릿과 메시지를 불변객체로 관리하고, sealed 클래스를 활용해 알림 상태와 타입을 타입 안전하게 처리</li>
-												<li class="text-dark">Port와 Adapter 패턴으로 FCM, KAKAO 등 외부 알림 서비스들의 교체와 추가가 용이한 구조 구현</li>
-												<li class="text-dark">각 알림 채널별 독립적인 테스트와 배포가 가능하도록 설계하여, 서비스 안정성과 유지보수성 향상</li>
+												<li class="text-dark">use case 1 : 이메일 통합 관리 서비스</li>
+												<a
+											class="btn btn-outline-secondary" target="_blank"
+											href="https://www.richam.site/"> user case 1 Link</a>
+											<a
+											class="btn btn-outline-secondary" target="_blank"
+											href="https://www.youtube.com/watch?v=hYpD-61Xz74"> user case 1 Vedio</a>
+												<li class="text-dark">use case 2 : 레시피 추천 서비스</li>
+												<a
+											class="btn btn-outline-secondary" target="_blank"
+											href="https://youtu.be/pTUChqAUHXQ?si=eS-gSCPuz5-Uxrzb"> user case 2 Vedio</a>
+												<li class="text-dark">use case 3 : 외국인과의 네트워킹을 위한 플랫폼</li>
+												<a
+											class="btn btn-outline-secondary" target="_blank"
+											href="https://youtu.be/yvUME8naHbY?si=gRlVyr0ZS0acQTti"> user case 3 Vedio</a>
 											</ul>
 										</div>
 										<div class="content-item">
@@ -447,45 +459,22 @@
 										</div>
 									</div>
 					
-									<!-- 트러블 슈팅 -->
-									<div id="troubles-dj" class="tab-content">
-										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">이미지 업로드 성능 최적화</h4>
-											<p class="mb-2 text-dark"><strong>문제상황:</strong> 다중 사용자 이미지 업로드시 100개 요청에서 100ms까지 지연 발생</p>
-											<p class="mb-2 text-dark"><strong>해결방법:</strong> CompletableFuture 도입으로 여러 이미지 동시 처리 구현</p>
-											<p class="text-dark"><strong>결과:</strong> 응답 시간 100ms에서 52ms로 48% 단축</p>
-										</div>
-										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">간접 참조 최적화를 통한 N+1 문제 해결</h4>
-											<p class="mb-2 text-dark"><strong>문제상황:</strong> 1,000개 데이터 조회시 40초 소요되는 성능 문제 발생</p>
-											<p class="mb-2 text-dark"><strong>해결방법:</strong> PK 추출 후 IN 쿼리와 Map 자료구조를 활용한 O(1) 시간 복잡도 구현</p>
-											<p class="text-dark"><strong>결과:</strong> 평균 응답 시간 40초에서 1.8초로 단축</p>
-										</div>
-									</div>
-					
 									<!-- 고민한 점 -->
 									<div id="thoughts-dj" class="tab-content">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">서비스별 최적 비동기 처리 방식 선정</h4>
-											<p class="text-dark">CompletableFuture의 쓰레드 할당 방식을 분석하고, 대량 처리시 발생할 수 있는 부하를 고려했습니다. JVM의 Context Switching 비용과 I/O 바운드 특성을 고려하여 Virtual Thread 방식 채택을 결정했습니다.</p>
+											<h4 class="text-primary mb-3 font-weight-bold">사용자 경험의 중요성</h4>
+											<p class="text-dark">복잡한 기술보다 사용자 니즈에 집중하여 ai 파이프라인의 용이성을 중점으로 제작하여 사용자 중심의 개발을 배움</p>
 										</div>
-										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">엔티티 연관관계와 성능 최적화의 균형</h4>
-											<p class="text-dark">성능 개선 과정에서 객체 지향 설계와 성능 사이의 트레이드오프를 경험했습니다. 엔티티 설계시 지연로딩을 기본으로 하고 필요한 경우 즉시로딩을 사용하는 방식으로 두 가지 요구사항의 균형을 맞추었습니다.</p>
-										</div>
-										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">주요 성장 포인트</h4>
-											<p class="text-dark">• 비동기 처리 방식의 트레이드오프를 고려한 기술 선정 능력 향상</p>
-											<p class="text-dark">• 명확한 목적을 가진 모니터링 도구 도입의 중요성 인식</p>
-											<p class="text-dark">• 시스템 응답 시간 개선과 효율적 리소스 관리 능력 향상</p>
-											<p class="text-dark">• 객체 지향 설계와 성능 사이의 균형점 도출 역량 강화</p>
-										</div>
+									
 									</div>
 								</div>
 							</div>
 						</div>
 
 					</div>
+							
+
+						</div>
 					
 						<h2 class="heading">PRICES</h2>
 						<div class="resume-wrap d-flex ftco-animate">
@@ -515,54 +504,18 @@
 							</div>
 						</div>
 						<h2 class="heading">Extracurricular Activities</h2>
-						<div class="experience-section">
-							<span class="date font-weight-bold text-dark">2023.09-2023.12</span>
-							<h2 class="font-weight-bold">BackEnd Engineer</h2>
-							<span class="position text-dark">Kusitms 28th 학회원 (한국대학생IT경영학회)</span>
-							
-							<!-- 기술 스택 -->
-							<div class="mb-4">
-								<b class="text-primary h5">기술 스택</b>
-								<p class="text-dark font-weight-medium">Spring Boot, JPA, MySQL</p>
+						<div class="resume-wrap d-flex ftco-animate">
+							<div class="icon d-flex align-items-center justify-content-center">
+								<span class="flaticon-ideas"></span>
 							</div>
-						
-							<!-- 탭 버튼들 -->
-							<div class="custom-tabs mb-3">
-								<button class="tab-btn active" onclick="changeTab(this, 'duties', 'kusitms28')">담당 업무</button>
-								<button class="tab-btn" onclick="changeTab(this, 'troubles', 'kusitms28')">트러블 슈팅 및 성과</button>
-								<button class="tab-btn" onclick="changeTab(this, 'thoughts', 'kusitms28')">고민한 점</button>
-							</div>
-						
-							<!-- 탭 컨텐츠 -->
-							<div class="tab-contents">
-								<!-- 담당 업무 -->
-								<div id="duties-kusitms28" class="tab-content active">
-									<div class="content-item">
-										<h4 class="text-primary mb-3 font-weight-bold">프로젝트 수행</h4>
-										<ul class="list-unstyled">
-											<li class="text-dark">동아ST 웹 페이지 개선 프로젝트 백엔드 개발</li>
-											<li class="text-dark">UN SDGs 관련 서비스 해커톤 참여</li>
-											<li class="text-dark">MEETPL 서비스 백엔드 개발</li>
-										</ul>
-									</div>
-								</div>
-						
-								<!-- 트러블 슈팅 및 성과 -->
-								<div id="troubles-kusitms28" class="tab-content">
-									<div class="content-item">
-										<h4 class="text-primary mb-3 font-weight-bold">MEETPL 서비스 성능 최적화</h4>
-										<p class="mb-2 text-dark"><strong>문제상황:</strong> 실시간 협업 기능 구현 시 동시성 이슈</p>
-										<p class="mb-2 text-dark"><strong>해결방법:</strong> WebSocket과 분산 락 구현</p>
-										<p class="text-dark"><strong>결과:</strong> 안정적인 실시간 협업 기능 구현</p>
-									</div>
-								</div>
-						
-								<!-- 고민한 점 -->
-								<div id="thoughts-kusitms28" class="tab-content">
-									<div class="content-item">
-										<h4 class="text-primary mb-3 font-weight-bold">협업 과정에서의 성장</h4>
-										<p class="text-dark">팀 프로젝트를 통해 기술적 성장뿐만 아니라 협업 능력과 커뮤니케이션 스킬을 향상시켰습니다.</p>
-									</div>
+							<div class="text pl-3">
+								<span class="date">2023.09-2023.12</span>
+								<h2>BackEnd Engineer</h2>
+								<span class="position">Kusitms 28th 학회원 (한국대학생IT경영학회)</span>
+								<div>
+									<div> - 기업프로젝트(동아ST) : 동아ST 웹 페이지 개선</div>
+									<div> - 해커톤 : UN SDGs를 키워드로 서비스 개발 </div>
+									<div> - 밋업데이 : 팀 회의의 솔루션을 제공하는 서비스, MEETPL 개발 </div>														
 								</div>
 							</div>
 						</div>
