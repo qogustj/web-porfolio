@@ -367,28 +367,57 @@
 									<!-- 트러블 슈팅 -->
 									<div id="troubles-dj" class="tab-content">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">이미지 업로드 성능 최적화</h4>
-											<p class="mb-2 text-dark"><strong>문제상황:</strong> 다중 사용자 이미지 업로드시 100개 요청에서 100ms까지 지연 발생</p>
-											<p class="mb-2 text-dark"><strong>해결방법:</strong> CompletableFuture 도입으로 여러 이미지 동시 처리 구현</p>
-											<p class="text-dark"><strong>결과:</strong> 응답 시간 100ms에서 52ms로 48% 단축</p>
+											<h4 class="text-primary mb-3 font-weight-bold">이미지 업로드 비동기 처리 타당성 검증</h4>
+											<p class="mb-2 text-dark"><strong>문제상황:</strong></p>
+											<p class="text-dark">이미지 업로드 지연에 따라 CompletableFuture를 도입하여 비동기 처리를 구현</p>
+											<p class="text-dark">CompletableFuture 메소드를 살펴보던 도중 비동기처리 하나당 쓰레드 하나가 할당됨을 확인</p>
+											<p class="text-dark">대량의 메소드 호출이 일어날 경우 쓰레드가 한정되어 부하의 우려가 생김을 확인</p>
+											<p class="mb-2 text-dark"><strong>기존 방식의 문제점:</strong></p>
+											<p class="text-dark">쓰레드 생성/소멸의 오버헤드 발생</p>
+											<p class="text-dark">쓰레드당 메모리 사용량 증가</p>
+											<p class="text-dark">- 과도한 쓰레드 생성으로 인한 컨텍스트 스위칭 증가</p>
+											<p class="text-dark">- 시스템 전반적인 성능 저하 가능성</p>
+											<p class="mb-2 text-dark"><strong>해결방법:</strong></p>
+											<p class="text-dark">Thread.startVirtualThread() 메서드 사용</p>
+											<p class="text-dark">I/O 작업 대기 시간 동안 플랫폼 스레드를 차단하지 않고, 다른 가상 스레드가 실행될 수 있어 리소스를 효율적으로 사용할 수 있음</p>
+											<p class="text-dark"><strong>결과:</strong></p>
+											<p class="text-dark">이미지 업로드같은 I/O 작업에서 평균 30프로의 성능향상을 이뤄냄</p>
+											<p class="text-dark">각 서비스 특징에 따라 다른 방식의 기술을 적용하는 시스템 사고를 키움</p>
 										</div>
 										<div class="content-item">
 											<h4 class="text-primary mb-3 font-weight-bold">간접 참조 최적화를 통한 N+1 문제 해결</h4>
-											<p class="mb-2 text-dark"><strong>문제상황:</strong> 1,000개 데이터 조회시 40초 소요되는 성능 문제 발생</p>
-											<p class="mb-2 text-dark"><strong>해결방법:</strong> PK 추출 후 IN 쿼리와 Map 자료구조를 활용한 O(1) 시간 복잡도 구현</p>
-											<p class="text-dark"><strong>결과:</strong> 평균 응답 시간 40초에서 1.8초로 단축</p>
+											<p class="mb-2 text-dark"><strong>문제상황:</strong></p>
+											<p class="text-dark">매일 새로운 소설이 추가될 때, 축적된 데이터로 인해 사용자들의 전체 소설 조회 시 성능 저하가 우려됨</p>
+											<p class="text-dark">1,000개의 데이터로 테스트 진행 결과, 기존 JPA를 이용한 방식은 40초의 응답 시간 발생</p>
+											<p class="mb-2 text-dark"><strong>기존 방식의 문제점:</strong></p>
+											<p class="text-dark">개별 레코드마다 별도의 쿼리를 실행하여 데이터베이스 부하가 높음</p>
+											<p class="text-dark">N+1 문제로 인해 데이터 조회 시 불필요하게 많은 쿼리가 발생</p>
+											<p class="mb-2 text-dark"><strong>해결방법:</strong></p>
+											<p class="text-dark">1. 간접 참조 대상의 PK를 추출</p>
+											<p class="text-dark">2. IN 쿼리로 벌크 데이터 조회</p>
+											<p class="text-dark">3. Map 자료구조 활용으로 O(1) 시간 복잡도의 데이터 접근 구현</p>
+											<p class="text-dark">4. Map 자료구조 사용에 따른 메모리 사용량 증가 우려 해소를 위해 대용량 데이터 처리 시 청크 처리 적용</p>
+											<p class="text-dark"><strong>결과:</strong></p>
+											<p class="text-dark">평균 응답 시간이 40초에서 1.8초로 단축</p>
+											<p class="text-dark">소설 조회 성능 개선으로 사용자 경험 향상</p>
 										</div>
 									</div>
 					
 									<!-- 고민한 점 -->
 									<div id="thoughts-dj" class="tab-content">
 										<div class="content-item">
-											<h4 class="text-primary mb-3 font-weight-bold">서비스별 최적 비동기 처리 방식 선정</h4>
-											<p class="text-dark">CompletableFuture의 쓰레드 할당 방식을 분석하고, 대량 처리시 발생할 수 있는 부하를 고려했습니다. JVM의 Context Switching 비용과 I/O 바운드 특성을 고려하여 Virtual Thread 방식 채택을 결정했습니다.</p>
+											<h4 class="text-primary mb-3 font-weight-bold">서비스마다 적합한 비동기 처리 방식</h4>
+											<p class="text-dark">CompletableFuture 메서드를 살펴보던 중 비동기 처리 하나당 쓰레드가 하나 할당 됨을 확인</p>
+											<p class="text-dark">대량의 비동기처리가 들어올 경우 쓰레드는 한정적이기에 부하의 우려가 생김</p>
+											<p class="text-dark">JVM 환경에서 Context Switching 비용의 이점을 가진 Virtual Thread를 학습</p>
+											<p class="text-dark">CPU Bound와 I/O바운드를 고려햇을때 이미지 비동기 처리는 Virtual Thread 방식이 적합하다고 판단함</p>
 										</div>
 										<div class="content-item">
 											<h4 class="text-primary mb-3 font-weight-bold">엔티티 연관관계와 성능 최적화의 균형</h4>
-											<p class="text-dark">성능 개선 과정에서 객체 지향 설계와 성능 사이의 트레이드오프를 경험했습니다. 엔티티 설계시 지연로딩을 기본으로 하고 필요한 경우 즉시로딩을 사용하는 방식으로 두 가지 요구사항의 균형을 맞추었습니다.</p>
+											<p class="text-dark">간접 참조 최적화 과정에서 성능 개선을 이뤄내며 고민이 생김</p>
+											<p class="text-dark">읽기 작업이 훨씬 많고 비즈니스로직이 복잡하지 않은 서비스(성능 중요시)라면 “id값을 class에 따로 설정해서 그걸 가져다 써도 상관없을까?” 라는 생각이 들었음.</p>
+											<p class="text-dark">그런데, 이럴거면 객체 지향 설계의 이점을 가진 JAVA를 사용할 필요가 없다고 생각함.</p>
+											<p class="text-dark">CPU Bound와 I/O바운드를 고려햇을때 이미지 비동기 처리는 Virtual Thread 방식이 적합하다고 판단함</p>
 										</div>
 										<div class="content-item">
 											<h4 class="text-primary mb-3 font-weight-bold">주요 성장 포인트</h4>
